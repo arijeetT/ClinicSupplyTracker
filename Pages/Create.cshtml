@@ -1,0 +1,35 @@
+@page
+@model ClinicSupplyTracker.Pages.CreateModel
+@{
+    ViewData["Title"] = "New Request";
+}
+
+<h1>New Supply Request</h1>
+
+<form method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="NewRequest.ItemName">Item name</label>
+        <input asp-for="NewRequest.ItemName"
+               class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="NewRequest.Quantity">Quantity</label>
+        <input asp-for="NewRequest.Quantity"
+               class="form-control" min="1" required />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="NewRequest.Department">Department</label>
+        <input asp-for="NewRequest.Department"
+               class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Submit request
+    </button>
+</form>
+
+<a asp-page="/Index">Back to requests</a>
