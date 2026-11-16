@@ -33,6 +33,12 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            @if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("WEBSITE_SITE_NAME")))
+            {
+                <div class="alert alert-info" role="note">
+                    Public student project demo. Use sample supply data only. Requests are shared with all visitors.
+                </div>
+            }
             @RenderBody()
         </main>
     </div>

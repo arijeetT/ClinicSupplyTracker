@@ -33,7 +33,7 @@ dotnet run --launch-profile http
 
 If `dotnet-ef` is already installed, check `dotnet ef --version` and use a compatible 10.0 tool version. Open the localhost address printed in the terminal (the included HTTP profile uses `http://localhost:5157`). Stop the app with Ctrl+C.
 
-Run commands from the project directory. The connection string in `Program.cs` is `Data Source=clinic.db`, so database commands create the local database there. The repository includes the initial migration, but excludes the local database and its data. Run `dotnet ef database update` before first use; the app does not automatically apply migrations on startup.
+Run commands from the project directory. Local runs use `clinic.db` in that directory. The repository includes the initial migration, but excludes the local database and its data. Run `dotnet ef database update` before first local use.
 
 For the optional HTTPS launch profile, trust the ASP.NET Core development certificate with `dotnet dev-certs https --trust`, then run `dotnet run --launch-profile https`.
 
@@ -70,3 +70,9 @@ There is no automated test suite in the supplied project. To check behavior manu
 This is a learning project, with no login or role-based access control. Use sample supply data when demonstrating it. Hosting source on GitHub does not deploy a live application. Production hosting, access control, and automated tests would be separate work.
 
 Local databases, build output, editor settings, local environment files, and secrets are excluded through `.gitignore`. The committed `appsettings.json` contains logging settings and the allowed-hosts setting.
+
+## Azure hosting
+
+On Azure App Service, the application detects `WEBSITE_SITE_NAME`, stores SQLite data at `HOME/data/ClinicSupplyTracker/clinic.db`, and applies the checked-in EF Core migrations at startup. Keeping data outside the deployed application folder preserves requests across deployments. Startup migration is intended for this single-instance student demo.
+
+The hosted app shows a notice that all visitors share the requests and should enter sample supply data only. It has no authentication. The local development workflow above remains available.
