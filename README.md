@@ -1,5 +1,9 @@
 # Clinic Supply Tracker
 
+[**Open live demo**](https://arijeett-clinic-supply-tracker.azurewebsites.net/)
+
+The demo runs on Azure App Service's Free F1 plan. The first visit may take a little longer while the app starts. All visitors share the demo requests; enter sample supply data only.
+
 A C# web application for recording clinic supply requests and tracking whether they have been fulfilled. This student project demonstrates CRUD operations, form validation, and relational database persistence.
 
 ## Stack
@@ -67,11 +71,13 @@ There is no automated test suite in the supplied project. To check behavior manu
 
 ## Scope
 
-This is a learning project, with no login or role-based access control. Use sample supply data when demonstrating it. Hosting source on GitHub does not deploy a live application. Production hosting, access control, and automated tests would be separate work.
+This is a learning project, with no login or role-based access control. Use sample supply data when demonstrating it. The live demo is hosted separately on Azure App Service; GitHub hosts the source. Production hardening, access control, and an automated test suite would be separate work.
 
 Local databases, build output, editor settings, local environment files, and secrets are excluded through `.gitignore`. The committed `appsettings.json` contains logging settings and the allowed-hosts setting.
 
 ## Azure hosting
+
+The live demo uses a Windows App Service with .NET 10 on the Free F1 tier in Norway East. It is deployed from the project's published output.
 
 On Azure App Service, the application detects `WEBSITE_SITE_NAME`, stores SQLite data at `HOME/data/ClinicSupplyTracker/clinic.db`, and applies the checked-in EF Core migrations at startup. Keeping data outside the deployed application folder preserves requests across deployments. Startup migration is intended for this single-instance student demo.
 
